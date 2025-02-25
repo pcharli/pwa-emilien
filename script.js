@@ -17,28 +17,55 @@ if ("serviceWorker" in navigator) {
 $searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  // Sauvegarder la date de recherche dans le localStorage
+  const searchDate = {
+    day: $dayInput.value,
+    month: $monthInput.value,
+    year: $yearInput.value,
+  };
+  localStorage.setItem("searchDate", JSON.stringify(searchDate));
+
   let events = await fetchEvents();
-
   localStorage.setItem("events", JSON.stringify(events));
-
   displayEvents(events);
 });
 
+
 //Displays the events in the result div and an error message if there is no events
 async function displayEvents(events) {
+  // Récupérer les valeurs des inputs
+  let day = $dayInput.value;
+  let month = $monthInput.value;
+  let year = $yearInput.value;
+
+  // Si les inputs sont vides (cas offline), on utilise la date stockée
+  if (!day || !month) {
+    const storedDate = localStorage.getItem("searchDate");
+    if (storedDate) {
+      const dateObj = JSON.parse(storedDate);
+      day = dateObj.day;
+      month = dateObj.month;
+      year = dateObj.year;
+    }
+  }
+
+  // Mettre à jour le titre avec la date (si année est présente)
+  $resultTitle.innerHTML = `Résultats pour ${day}/${month}${year ? '/' + year : ''} :`;
   $resultTitle.classList.remove("hidden");
+
   if (events == undefined || events.length == 0) {
-    $resultContainer.innerHTML = "Aucun événement trouvé pour cette date.";
+    $resultContainer.innerHTML = `<i class="fa-solid fa-face-sad-tear"></i> Aucun événement trouvé pour cette date.`;
     return;
   }
 
   events.sort((a, b) => a.year - b.year);
-
   $resultContainer.innerHTML = "";
   for (const eventData of events) {
     createEventcard(eventData);
   }
 }
+
+
 
 //Wrapper method to fetch the events
 async function fetchEvents() {
@@ -78,7 +105,7 @@ async function createEventcard(eventData) {
   $resultContainer.innerHTML += `
     <details class="card">
       <summary class="card__title">
-        🔷 ${eventData.year} - ${eventData.text}
+        ${eventData.year} - ${eventData.text}
       </summary>
       <div>
         <div class="card__more">
@@ -121,6 +148,6 @@ async function handleOffline() {
     });
 
     $searchForm.innerHTML =
-      "<p>Aucune connexion au réseau. Impossible d'envoyer une requête, veuillez réessayer </p>";
+      `<p><i class="fa-solid fa-triangle-exclamation text-red-100"></i> Aucune connexion au réseau. Impossible d'envoyer une requête, veuillez réessayer <i class="fa-solid fa-triangle-exclamation"></i></p>`;
   }
 }

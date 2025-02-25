@@ -75,7 +75,7 @@ body {
 }
 
 .card__image {
-  @apply max-h-36;
+  @apply max-h-36 flex-wrap justify-center;
 }
 
 .card__info {

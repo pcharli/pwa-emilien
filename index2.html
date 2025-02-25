@@ -6,24 +6,13 @@
     <link rel="icon" href="icon/192.png" type="image/png" />
     <link rel="stylesheet" href="output.min.css" />
     <link rel="manifest" href="manifest.json" />
-    <title>Trouve des événements historiques !</title>
-    <!-- Inclusion de FontAwesome (version 6) -->
-    <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
-
+    <title>Trouve des évenements historique !</title>
     <script defer src="config.js"></script>
     <script defer src="script.js"></script>
   </head>
   <body>
     <header class="search">
-      <h1 class="search__title">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        Trouve des événements historiques !
-      </h1>
+      <h1 class="search__title">🔎 Trouve des événements historiques !</h1>
       <form class="search__form">
         <input
           required
@@ -46,6 +35,7 @@
         />
         <span>/</span>
         <input
+          re
           class="search__input"
           placeholder="YYYY (facultatif)"
           type="number"
@@ -55,10 +45,7 @@
       </form>
     </header>
     <main class="results">
-      <h1 class="result__title hidden">
-        <i class="fa-solid fa-scroll"></i>
-        Résultats :
-      </h1>
+      <h1 class="result__title hidden">📜 Résultats :</h1>
       <div class="result__container"></div>
     </main>
   </body>
