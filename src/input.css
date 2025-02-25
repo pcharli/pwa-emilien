@@ -71,11 +71,11 @@ body {
 }
 
 .card__more {
-  @apply flex p-3;
+  @apply flex p-3 flex-wrap justify-center;
 }
 
 .card__image {
-  @apply max-h-36 flex-wrap justify-center;
+  @apply max-h-36;
 }
 
 .card__info {
