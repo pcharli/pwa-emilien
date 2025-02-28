@@ -18,11 +18,14 @@ body {
 }
 
 .search__form {
-  @apply flex gap-4;
+  @apply flex flex-col md:gap-4 sm:flex-row;
+}
+.search__form span {
+  @apply hidden sm:block;
 }
 
 .search__input {
-  @apply p-3 rounded-md outline-0 max-w-40 w-full text-center bg-gray-50 hover:scale-105 transition-transform;
+  @apply p-3 m-3 sm:m-0 rounded-md outline-0 max-w-40 w-full text-center bg-gray-50 hover:scale-105 transition-transform;
   -moz-appearance: textfield;
 }
 
