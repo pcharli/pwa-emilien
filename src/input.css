@@ -100,3 +100,9 @@ body {
 footer {
   @apply p-3 mt-5 text-center bg-gray-100 font-bold shadow-md;
 }
+.install {
+  @apply bg-green-500 rounded-md text-white p-3 px-6 hover:cursor-pointer hover:bg-green-600 hover:scale-105 transition-all sticky top-1 shadow m-5;
+}
+.hidden {
+  display: none;
+}
