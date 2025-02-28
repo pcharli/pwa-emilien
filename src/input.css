@@ -96,3 +96,7 @@ body {
 .card__links {
   @apply border-t-[1px] mt-5 pt-3 border-gray-200 flex justify-between gap-6 items-center;
 }
+
+footer {
+  @apply p-3 mt-5 text-center bg-gray-100 font-bold shadow-md;
+}

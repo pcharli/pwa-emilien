@@ -3,6 +3,7 @@ const $searchForm = document.querySelector(".search__form");
 const $dayInput = document.querySelector("#day");
 const $monthInput = document.querySelector("#month");
 const $yearInput = document.querySelector("#year");
+const $nb_result = document.querySelector(".nbr");
 
 const $resultTitle = document.querySelector(".result__title");
 
@@ -50,13 +51,14 @@ async function displayEvents(events) {
   }
 
   // Mettre à jour le titre avec la date (si année est présente)
-  $resultTitle.innerHTML = `Résultats pour ${day}/${month}${year ? '/' + year : ''} :`;
+  $resultTitle.innerHTML = `${events.length} résultats pour ${day}/${month}${year ? '/' + year : ''} :`;
   $resultTitle.classList.remove("hidden");
 
   if (events == undefined || events.length == 0) {
     $resultContainer.innerHTML = `<i class="fa-solid fa-face-sad-tear"></i> Aucun événement trouvé pour cette date.`;
     return;
   }
+
 
   events.sort((a, b) => a.year - b.year);
   $resultContainer.innerHTML = "";
