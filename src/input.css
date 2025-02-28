@@ -106,3 +106,6 @@ footer {
 .hidden {
   display: none;
 }
+.date {
+  @apply flex sm:flex-row;
+}

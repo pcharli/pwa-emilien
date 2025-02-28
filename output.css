@@ -443,6 +443,12 @@ footer {
 .hidden {
   display: none;
 }
+.date {
+  display: flex;
+  @media (width >= 40rem) {
+    flex-direction: row;
+  }
+}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
