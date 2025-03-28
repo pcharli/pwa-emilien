@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cepegra: #EF9005;
+}
+
 body {
   @apply flex flex-col h-screen;
 }
@@ -8,13 +12,16 @@ body {
 .search {
   @apply bg-gray-100 flex items-center justify-center flex-col shadow-md p-6;
 }
+.logo {
+  @apply h-20;
+}
 
 .search span {
   @apply self-center;
 }
 
 .search__title {
-  @apply text-4xl mb-6 font-bold;
+  @apply text-4xl mb-6 font-bold text-cepegra;
 }
 
 .search__form {
@@ -39,7 +46,7 @@ body {
 }
 
 .search__submit {
-  @apply bg-green-500 rounded-md text-white p-3 px-6 hover:cursor-pointer hover:bg-green-600 hover:scale-105 transition-all;
+  @apply  bg-cepegra rounded-md text-white p-3 px-6 hover:cursor-pointer hover:bg-gray-500 hover:scale-105 transition-all;
 }
 
 /*Resulst styling*/
@@ -49,7 +56,7 @@ body {
 }
 
 .result__title {
-  @apply text-3xl font-bold mb-6;
+  @apply text-3xl font-bold mb-6 text-gray-500;
 }
 
 .result__container {
@@ -60,9 +67,14 @@ body {
 .card {
   @apply border-2 border-gray-100 rounded-md p-4 shadow-xl flex flex-col not-open:justify-center open:gap-5 hover:scale-105 transition-transform;
 }
+.arrow {
+  @apply text-cepegra;
+}
+
+
 
 .card a {
-  @apply text-blue-500 underline hover:text-blue-200;
+  @apply  text-cepegra underline hover:text-gray-500;
 }
 
 .card:is([open]) .card__title {
@@ -101,7 +113,7 @@ footer {
   @apply p-3 mt-5 text-center bg-gray-100 font-bold shadow-md;
 }
 .install {
-  @apply bg-green-500 rounded-md text-white p-3 px-6 hover:cursor-pointer hover:bg-green-600 hover:scale-105 transition-all sticky top-1 shadow m-5;
+  @apply bg-cepegra rounded-md text-white p-3 px-6 hover:cursor-pointer hover:bg-cepegra hover:scale-95 transition-all sticky top-1 shadow m-5;
 }
 .hidden {
   display: none;

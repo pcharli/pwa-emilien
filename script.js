@@ -55,7 +55,7 @@ async function displayEvents(events) {
   $resultTitle.classList.remove("hidden");
 
   if (events == undefined || events.length == 0) {
-    $resultContainer.innerHTML = `<i class="fa-solid fa-face-sad-tear"></i> Aucun événement trouvé pour cette date.`;
+    $resultContainer.innerHTML = `<i class="fa-solid fa-face-sad-tear arrow"></i> Aucun événement trouvé pour cette date.`;
     return;
   }
 
@@ -107,7 +107,7 @@ async function createEventcard(eventData) {
   $resultContainer.innerHTML += `
     <details class="card">
       <summary class="card__title">
-        ${eventData.year} - ${eventData.text}
+        ${eventData.year} - ${imageAlt}
       </summary>
       <div>
         <div class="card__more">
