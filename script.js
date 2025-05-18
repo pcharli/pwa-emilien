@@ -3,18 +3,26 @@ const $searchForm = document.querySelector(".search__form");
 const $dayInput = document.querySelector("#day");
 const $monthInput = document.querySelector("#month");
 const $yearInput = document.querySelector("#year");
+
+//zones pour afficher le nombre de résultats
 const $nb_result = document.querySelector(".nbr");
-
 const $resultTitle = document.querySelector(".result__title");
-
 const $resultContainer = document.querySelector(".result__container");
 
+// fonction pour mettre la première lettre en majuscule
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+//gestion de la non connexion
 handleOffline();
 
+// gestion de la mise offline
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
 
+//soumission du formulaire
 $searchForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -26,8 +34,11 @@ $searchForm.addEventListener("submit", async (e) => {
   };
   localStorage.setItem("searchDate", JSON.stringify(searchDate));
 
+  //lancement de la requête sur Wikipedia
   let events = await fetchEvents();
+  //stockage des events en cache
   localStorage.setItem("events", JSON.stringify(events));
+  //affciahe des events
   displayEvents(events);
 });
 
@@ -52,17 +63,20 @@ async function displayEvents(events) {
 
   // Mettre à jour le titre avec la date (si année est présente)
   $resultTitle.innerHTML = `${events.length} résultats pour ${day}/${month}${year ? '/' + year : ''} :`;
+  // affichage du titre
   $resultTitle.classList.remove("hidden");
 
+  //si pas d'event, affichage d'un message
   if (events == undefined || events.length == 0) {
     $resultContainer.innerHTML = `<i class="fa-solid fa-face-sad-tear arrow"></i> Aucun événement trouvé pour cette date.`;
     return;
   }
 
-
+  //si events, on les trie par année
   events.sort((a, b) => a.year - b.year);
   $resultContainer.innerHTML = "";
   for (const eventData of events) {
+    // on va créer une carte par event
     createEventcard(eventData);
   }
 }
@@ -71,14 +85,18 @@ async function displayEvents(events) {
 
 //Wrapper method to fetch the events
 async function fetchEvents() {
+  //requête
   const result = await fetch(
     `${API_ENDPOINT}/${$monthInput.value}/${$dayInput.value}`
   );
-
+  //traitement de la réponse
   let events = (await result.json()).events;
 
+  //si une année est fournie
   if ($yearInput.value !== "" && events != undefined) {
+    //on la converti en nombre (c'est du texte sinon)
     const year = Number.parseInt($yearInput.value);
+    //??
     events = events.filter((article) => year == article.year);
   }
 
@@ -101,19 +119,20 @@ async function createEventcard(eventData) {
   if (links.length == 0) {
     links = "Pas d'articles liés";
   } else {
+    //transforme un tableau de lien en une phrase ??
     links = links.reduce((a, value) => (a = a + ", " + value));
   }
 
   $resultContainer.innerHTML += `
     <details class="card">
       <summary class="card__title">
-        ${eventData.year} - ${imageAlt}
+        ${eventData.year} - ${imageAlt.replace(/_/g, ' ')}
       </summary>
       <div>
         <div class="card__more">
           <img class="card__image" src="${image}" alt="${imageAlt}"/>
           <div class="card__info">
-            <p class="card_text">${eventData.text}</p>
+            <p class="card__text">${capitalizeFirstLetter(eventData.text)}</p>
           </div> 
         </div>
         <div class="card__links">
@@ -124,7 +143,7 @@ async function createEventcard(eventData) {
     </details>
     `;
 }
-
+//
 //Fetch the api to check online status
 async function isOnline() {
   try {
