@@ -7,6 +7,7 @@ const CACHED = [
   "/output.min.css",
   "/js/script.js",
   "/js/config.js",
+  "/js/install.js",
   "/manifest.json",
   "/images/logo.jpg",
   "/icon/192.png",
