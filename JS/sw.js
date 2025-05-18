@@ -1,4 +1,4 @@
-const VERSION = "V2";
+const VERSION = "V2.1";
 
 //The list of file to cache
 const CACHED = [
@@ -7,6 +7,7 @@ const CACHED = [
   "/output.min.css",
   "/js/script.js",
   "/js/config.js",
+  "/js/install.js",
   "/manifest.json",
   "/images/logo.jpg",
   "/icon/192.png",
