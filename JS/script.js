@@ -19,7 +19,7 @@ handleOffline();
 
 // gestion de la mise offline
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+  navigator.serviceWorker.register("js/sw.js");
 }
 
 //soumission du formulaire
