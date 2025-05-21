@@ -1,0 +1,4 @@
+Génère moi un fichier manifest.json pour une pwa dont le titre est "Trouve des événements historiques", le titre simplifié est "History", la couleur du thème est #EF9005, l'arrière plan est #F3F4F6, affiché en mode portrait. On a deux icones : icon/192.png qui est masquable et icon/512.png
+
+
+Le point de départ de mon application ext "index.html" et je voudrais avoir une version à 1.0
