@@ -1,4 +1,4 @@
-const VERSION = "V2";
+const VERSION = "V1.1";
 
 //The list of file to cache
 const CACHED = [
@@ -9,18 +9,21 @@ const CACHED = [
   "/js/config.js",
   "/js/install.js",
   "/manifest.json",
-  "/images/logo.jpg",
+  "/images/cepegra.svg",
   "/icon/192.png",
   "/icon/512.png",
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css",
+  "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,slnt,wdth,wght,GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC@8..144,-10..0,25..151,100..1000,-200..150,27..175,323..603,25..135,649..854,-305..-98,560..788,416..570,528..760&display=swap"
 ];
 
 self.addEventListener("fetch", (e) => {
+  //console.log(e)
   e.respondWith(handleResponse(e));
 });
 
 //Dispatch the resposne handle based of the type of request
 async function handleResponse(e) {
+  //console.log(e)
   if (e.request.mode == "navigate") {
     return await handleNavigateReponse(e);
   } else {

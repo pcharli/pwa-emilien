@@ -19,7 +19,7 @@ handleOffline();
 
 // gestion de la mise offline
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("js/sw.js");
+  //navigator.serviceWorker.register("js/sw.js");
 }
 
 //soumission du formulaire
@@ -106,7 +106,7 @@ async function fetchEvents() {
 //Create a single event card
 async function createEventcard(eventData) {
   const pages = eventData.pages;
-  const image = pages[0].thumbnail?.source;
+  const image = (pages[0].thumbnail.source) ? pages[0].thumbnail.source : "images/default.webp";
   const imageAlt = pages[0].title;
   const articleLink = pages[0].content_urls.desktop.page;
   pages.splice(0, 1);
